@@ -8,15 +8,15 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\Users\Sacha\AppData\Local\Programs\
 ## CODE ##
 
 #PLEASE CHANGE THE PATH OF THE PICTURE TO THE ONE DESIRED !#
-image = Image.open('ScreenOW3.jpg')
+image = Image.open('ScreenOW6.jpg')
 
 #cropped_image = image.crop((0,880,900,1080))
 kills = image.crop((0,880,300,950))
 obj_kills = image.crop((300,880,550,950))
 obj_time = image.crop((580,880,900,950))
-hero_dmg = image.crop((120,950,230,990))
+hero_dmg = image.crop((130,950,230,995))
 heal = image.crop((300,950,550,1020))
-deaths = image.crop((580,950,900,1020))
+deaths = image.crop((580,930,810,1000))
 
 kills.save('kills.jpg')
 obj_kills.save('obj_kills.jpg')
@@ -34,7 +34,7 @@ ih = Image.open('heal.jpg')
 id = Image.open('deaths.jpg')
 
 print(ik.size)
-#print(pytesseract.image_to_string(ihd))
+print(pytesseract.image_to_string(id))
 List = [ik,iok,iot,ihd,ih,id]
 
 ## image2.show()
@@ -65,7 +65,7 @@ def raw_to_string(raw) :
     str = ""
     for i in range(len(raw)) :
         if is_digit_or_comma_or_semicolon(raw[i]) :
-            while (is_digit_or_comma_or_semicolon(raw[i])) :
+            while (is_digit_or_comma_or_semicolon(raw[i]) or is_digit_or_comma_or_semicolon(raw[i+1])) :
                 str += raw[i]
                 i+=1
             return str
